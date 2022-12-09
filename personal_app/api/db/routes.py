@@ -3,5 +3,5 @@ from flask import Blueprint, request, jsonify
 from datetime import datetime
 
 
-api = Blueprint('api', __name__, url_prefix = '/api')
+api = Blueprint('db_api', __name__, url_prefix = '/db/api')
 
