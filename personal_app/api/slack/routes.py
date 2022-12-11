@@ -1,8 +1,12 @@
-from flask import Blueprint, request, current_app as app
+from flask import Blueprint, request, url_for, current_app as app
 
 from slack_sdk import WebClient
 
+import requests
+
 import json
+
+from personal_app.api.db.routes import get_items
 
 slack_api = Blueprint('slack_api', __name__, url_prefix = '/slack/api')
 
@@ -10,6 +14,16 @@ event_id_dict = {}
 
 @slack_api.route('/event', methods=['POST'])
 def slack_event():
+    # --------------------------------------------------------------
+    # For initial or updated URL setting in slack api console only
+    # Need to respond back to slack api with 200 code hopefully
+    # --------------------------------------------------------------
+    # content_type = request.headers.get('Content-Type')
+    # if (content_type == 'application/json'):
+    #     request_json = request.json
+    #     return request_json
+    # --------------------------------------------------------------
+
     client = WebClient(token=app.config['SLACK_BOT_TOKEN'])
     BOT_ID = client.api_call('auth.test')['user_id']
 
@@ -36,19 +50,32 @@ def slack_event():
             return request_json
     elif BOT_ID != user_id and event_type == 'message' and event_id not in event_id_dict:            
         event_id_dict[event_id] = 1
-
         print(f"---- {event_id}: {event_id_dict[event_id]} ---- ok")
-        client.chat_postMessage(channel=channel_id, text=text)
+        headers = {
+            'Content-Type': 'application/json',
+            'x-access-token': 'Bearer test_user_token'
+        }
+        response = requests.get(f'{request.root_url}/db/api/items', headers=headers)
+        print(f"----------------------------- response.text: {response.text} -----------------------------")
+        client.chat_postMessage(channel=channel_id, text=response.text)
 
+        # --------------------------------------------------------------
+        # Need to respond back to slack api with 200 code hopefully
+        # --------------------------------------------------------------
         content_type = request.headers.get('Content-Type')
         if (content_type == 'application/json'):
             request_json = request.json
             return request_json
+        # --------------------------------------------------------------
     else:
-        print("---- else ----")
+        # --------------------------------------------------------------
+        # Need to respond back to slack api with 200 code hopefully
+        # --------------------------------------------------------------
         content_type = request.headers.get('Content-Type')
         if (content_type == 'application/json'):
             request_json = request.json
             return request_json
+        # --------------------------------------------------------------
+
 
 

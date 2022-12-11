@@ -19,7 +19,7 @@ class Item(db.Model):
     date_created = db.Column(db.DateTime, nullable = False, default = datetime.utcnow())
     date_due = db.Column(db.DateTime, nullable = False, default = '')
     date_reminder = db.Column(db.DateTime, nullable = False, default = '')
-    user_token = db.Column(db.String, nullable = False, default = '')
+    user_token = db.Column(db.String, nullable = False, default = 'test_user_token')
 
     def __init__(self, category, item, date_created, date_due, date_reminder, user_token, id = ''):
         self.id = self.set_id()
@@ -39,7 +39,7 @@ class Item(db.Model):
 
 class ItemSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'category', 'item', 'date_created', 'date_due', 'date_reminder']
+        fields = ['id', 'category', 'item', 'date_created', 'date_due', 'date_reminder', 'user_token']
 
 
 item_schema = ItemSchema()
