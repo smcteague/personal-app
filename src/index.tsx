@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import { Provider } from 'react-redux';
-import { FirebaseAppProvider } from 'react-dom/client';
+import { FirebaseAppProvider } from 'reactfire';
 import 'firebase/auth'
 
 import { store } from './redux/store';
 import { theme } from './Theme/themes';
-import { Home, Dashboard, SignIn, SignUp } from './components';
+// import { Home, Dashboard, SignIn, SignUp } from './components';
+import { Home } from './components';
 import { firebaseConfig } from './firebaseConfig';
 import reportWebVitals from './reportWebVitals';
 import './styles.css'
@@ -25,9 +26,9 @@ root.render(
           <Router>
             <Routes>
               <Route path='/' element={<Home title={'Personal Data'}/>}/>
-              <Route path='/dashboard' element={<Dashboard/>}/>
+              {/* <Route path='/dashboard' element={<Dashboard/>}/>
               <Route path='/signin' element={<SignIn/>}/>
-              <Route path='/signup' element={<SignUp/>}/>
+              <Route path='/signup' element={<SignUp/>}/> */}
             </Routes>
           </Router>  
         </ThemeProvider>
