@@ -97,7 +97,7 @@ export const Home = (props: Props) => {
             <Main>
                 <MainText>
                     <h1>{props.title}</h1>
-                    <p>Drones are fly.</p>
+                    <p>The convenience of a single app</p>
                     <Button color='primary' variant='contained' component={Link} to='/dashboard'>See The Drones</Button>
                 </MainText>
             </Main>
