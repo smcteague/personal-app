@@ -16,9 +16,19 @@ event_id_dict = {}
 
 @slack_api.route('/event', methods=['POST'])
 def slack_event():
+    ####################################################################
+    ####################################################################
+    # 
+    # Main inbound section before parsing slack api event
+    #
+    ####################################################################
+
     # --------------------------------------------------------------
-    # For initial or updated URL setup in slack api console only
-    # Need to respond back to slack api with 200 code hopefully
+    # Uncomment out the below for initial or updated URL setup in 
+    # slack api console only.
+    # 
+    # Need to respond back to slack api with 200 code hopefully.
+    # 
     # --------------------------------------------------------------
     # content_type = request.headers.get('Content-Type')
     # if (content_type == 'application/json'):
@@ -68,7 +78,12 @@ def slack_event():
             request_json = request.json
             return request_json
 
+    ####################################################################
+    ####################################################################
+    # 
     # ADD item
+    #
+    ####################################################################
     elif BOT_ID != user_id \
                 and event_type == 'message' \
                 and event_id not in event_id_dict \
@@ -140,7 +155,12 @@ def slack_event():
             return request_json
         # --------------------------------------------------------------
 
+    ####################################################################
+    ####################################################################
+    # 
     # GET all items by category or keyword
+    #
+    ####################################################################
     elif BOT_ID != user_id \
                 and event_type == 'message' \
                 and event_id not in event_id_dict \
@@ -197,7 +217,12 @@ def slack_event():
             return request_json
         # --------------------------------------------------------------
 
+    ####################################################################
+    ####################################################################
+    # 
     # UPDATE item by id
+    #
+    ####################################################################
     elif BOT_ID != user_id \
                 and event_type == 'message' \
                 and event_id not in event_id_dict \
@@ -299,7 +324,12 @@ def slack_event():
             return request_json
         # --------------------------------------------------------------
 
+    ####################################################################
+    ####################################################################
+    # 
     # DELETE item by id
+    #
+    ####################################################################
     elif BOT_ID != user_id \
                 and event_type == 'message' \
                 and event_id not in event_id_dict \
@@ -349,6 +379,12 @@ def slack_event():
             return request_json
         # --------------------------------------------------------------
 
+    ####################################################################
+    ####################################################################
+    # 
+    # DEFAULT response back to slack api
+    #
+    ####################################################################
     else:
         # --------------------------------------------------------------
         # Need to respond back to slack api with 200 code hopefully
