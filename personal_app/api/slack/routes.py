@@ -320,9 +320,9 @@ def slack_event():
 
         # use original text due to Id being case-sensitive
         try:
-            id = re.findall('delete\s+(.*)\s+?', text)[0]
+            id = re.findall('delete\s+(.*)\s*', text)[0]
         except:
-            id = re.findall('Delete\s+(.*)\s+?', text)[0]
+            id = re.findall('Delete\s+(.*)\s*', text)[0]
         
         # --------------------------------------------------------------
         # console logging

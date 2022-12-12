@@ -42,7 +42,8 @@ def get_items(token):
 @token_required
 def get_items_query_category(token, category):
     owner = token
-    items = Item.query.filter_by(user_token=owner, category=category).all()
+    items = Item.query.filter_by(user_token=owner, category=category)\
+        .order_by(Item.date_due.desc())
 
     response = items_schema.dump(items)
 
@@ -52,7 +53,9 @@ def get_items_query_category(token, category):
 @token_required
 def get_items_query_keyword(token, keyword):
     owner = token
-    items = Item.query.filter(Item.user_token == owner, Item.item.like('%' + keyword + '%'))
+    items = Item.query.filter(Item.user_token == owner, \
+        (Item.item.like('%' + keyword + '%') \
+            | Item.category.like('%' + keyword + '%'))).order_by(Item.date_due.asc())
 
     response = items_schema.dump(items)
 
