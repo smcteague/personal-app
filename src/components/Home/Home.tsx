@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 // import { GoogleButton } from '../SignIn/SignIn'
-// import drone_image from '../../assets/images/_______image.jpg';
+// import _______image from '../../assets/images/_______image.jpg';
 
 
 interface Props {
@@ -98,7 +98,7 @@ export const Home = (props: Props) => {
                 <MainText>
                     <h1>{props.title}</h1>
                     <p>The convenience of a single app</p>
-                    <Button color='primary' variant='contained' component={Link} to='/dashboard'>See The Drones</Button>
+                    <Button color='primary' variant='contained' component={Link} to='/dashboard'>See Your Data</Button>
                 </MainText>
             </Main>
 
