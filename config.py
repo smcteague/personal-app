@@ -11,3 +11,5 @@ class Config():
     FLASK_ENV = os.environ.get('FLASK_ENV')
     SQLALCHEMY_DATABASE_URI = os.environ.get('DEPLOY_DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SLACK_BOT_TOKEN = os.environ.get('SLACK_BOT_TOKEN')
+    SLACK_SIGNING_SECRET = os.environ.get('SLACK_SIGNING_SECRET')
