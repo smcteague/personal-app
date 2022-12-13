@@ -5,7 +5,7 @@ from flask_cors import CORS
 from .api.db.routes import db_api
 from .api.slack.routes import slack_api
 from .models import db as root_db
-from config import Config
+from .config import Config
 
 
 app = Flask(__name__)

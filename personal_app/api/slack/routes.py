@@ -7,7 +7,7 @@ import requests
 import json
 import re
 
-from api.db.routes import get_items
+from ..db.routes import get_items
 
 
 slack_api = Blueprint('slack_api', __name__, url_prefix = '/slack/api')
@@ -144,7 +144,7 @@ def slack_event():
         print(f"---- response.text: {response.text} ----")
         # --------------------------------------------------------------
 
-        client.chat_postMessage(channel=channel_id, text=response.text)
+        client.chat_postMessage(channel=channel_id, text=f"Added:\n\n {response.text}")
 
         # --------------------------------------------------------------
         # Need to respond back to slack api with 200 code hopefully
@@ -206,7 +206,7 @@ def slack_event():
         print(f"---- response.text: {response.text} ----")
         # --------------------------------------------------------------
 
-        client.chat_postMessage(channel=channel_id, text=response.text)
+        client.chat_postMessage(channel=channel_id, text=f"Retrieved:\n\n {response.text}")
 
         # --------------------------------------------------------------
         # Need to respond back to slack api with 200 code hopefully
@@ -313,7 +313,7 @@ def slack_event():
         print(f"---- response.text: {response.text} ----")
         # --------------------------------------------------------------
 
-        client.chat_postMessage(channel=channel_id, text=response.text)
+        client.chat_postMessage(channel=channel_id, text=f"Updated:\n\n {response.text}")
 
         # --------------------------------------------------------------
         # Need to respond back to slack api with 200 code hopefully
@@ -368,7 +368,7 @@ def slack_event():
         print(f"---- response.text: {response.text} ----")
         # --------------------------------------------------------------
 
-        client.chat_postMessage(channel=channel_id, text=response.text)
+        client.chat_postMessage(channel=channel_id, text=f"Deleted:\n\n {response.text}")
 
         # --------------------------------------------------------------
         # Need to respond back to slack api with 200 code hopefully
