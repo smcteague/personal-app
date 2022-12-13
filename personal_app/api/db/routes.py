@@ -3,12 +3,14 @@ from flask import Blueprint, request, jsonify
 from datetime import datetime, timezone
 
 from personal_app.helpers import token_required
-from personal_app.models import db, Item, item_schema, items_schema
+from personal_app.models import db, Item, SlackUser, item_schema, items_schema, slack_user_schema, slack_users_schema
 
 
 db_api = Blueprint('db_api', __name__, url_prefix = '/db/api')
 
-
+########################################################################
+# Item Info
+# ----------------------------------------------------------------------
 @db_api.route('/items', methods=['POST'])
 @token_required
 def create_item(token):
@@ -92,5 +94,25 @@ def delete_character(token, id):
     db.session.commit()
 
     response = item_schema.dump(item)
+
+    return jsonify(response)
+
+########################################################################
+# Slack User Info
+# ----------------------------------------------------------------------
+@db_api.route('/slack_user', methods=['POST'])
+@token_required
+def create_slack_user(token):
+    slack_workspace_url = request.json['slack_workspace_url']
+    slack_user_id = request.json['slack_user_id']
+    date_recorded = datetime.now(tz=timezone.utc)
+    user_token = token 
+
+    slack_user = SlackUser(slack_workspace_url, slack_user_id, date_recorded, user_token)
+
+    db.session.add(slack_user)
+    db.session.commit()
+
+    response = item_schema.dump(slack_user)
 
     return jsonify(response)
