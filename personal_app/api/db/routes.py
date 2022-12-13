@@ -32,7 +32,9 @@ def create_item(token):
 @token_required
 def get_items(token):
     owner = token
-    items = Item.query.filter_by(user_token=owner).all()
+    items = Item.query.filter_by(user_token=owner)\
+        .order_by(Item.date_created.desc())\
+            .all()
 
     response = items_schema.dump(items)
 
@@ -55,7 +57,8 @@ def get_items_query_keyword(token, keyword):
     owner = token
     items = Item.query.filter(Item.user_token == owner, \
         (Item.item.like('%' + keyword + '%') \
-            | Item.category.like('%' + keyword + '%'))).order_by(Item.date_due.asc())
+            | Item.category.like('%' + keyword + '%')))\
+                .order_by(Item.date_due.asc())
 
     response = items_schema.dump(items)
 
@@ -69,6 +72,7 @@ def update_item(token, id):
         item.category = request.json['category']
     if request.json['item']:
         item.item = request.json['item']
+    item.date_created = datetime.utcnow()
     if request.json['date_due']:
         item.date_due = request.json['date_due']
     if request.json['date_reminder']:

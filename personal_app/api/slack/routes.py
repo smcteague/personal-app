@@ -244,10 +244,10 @@ def slack_event():
         string = text.lower()
 
         # use original text due to Id being case-sensitive
-        id = re.findall('update\s+([A-Za-z0-9_-][^\s]*)\s+\[', text)[0]
+        id = re.findall('update\s*([A-Za-z0-9_-][^\s]*)\s*\[', text)[0]
 
         try:
-            category = re.findall('\s+\[([A-Za-z0-9\s]+)\]\s+', string)[0]
+            category = re.findall('\s*\[([A-Za-z0-9\s]+)\]\s*', string)[0]
         except:
             category = False
 
