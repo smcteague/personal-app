@@ -72,7 +72,7 @@ def update_item(token, id):
         item.category = request.json['category']
     if request.json['item']:
         item.item = request.json['item']
-    item.date_created = datetime.utcnow()
+    item.date_created = datetime.now(tz=timezone.utc)
     if request.json['date_due']:
         item.date_due = request.json['date_due']
     if request.json['date_reminder']:
