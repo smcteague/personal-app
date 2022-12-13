@@ -70,8 +70,6 @@ const MainText = styled('div')({
 
 
 
-
-
 export const Home = (props: Props) => {
     return (
         <Root>
@@ -101,9 +99,6 @@ export const Home = (props: Props) => {
                     <Button color='primary' variant='contained' component={Link} to='/dashboard'>See Your Data</Button>
                 </MainText>
             </Main>
-
-
-
         </Root>
     )
 }

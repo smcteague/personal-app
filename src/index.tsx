@@ -9,7 +9,7 @@ import 'firebase/auth'
 import { store } from './redux/store';
 import { theme } from './Theme/themes';
 // import { Home, Dashboard, SignIn, SignUp } from './components';
-import { Home } from './components';
+import { Home, Dashboard } from './components';
 import { firebaseConfig } from './firebaseConfig';
 import reportWebVitals from './reportWebVitals';
 import './styles.css'
@@ -20,14 +20,14 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <FirebaseAppProvider>
+    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <Router>
             <Routes>
-              <Route path='/' element={<Home title={'Personal Data'}/>}/>
-              {/* <Route path='/dashboard' element={<Dashboard/>}/>
-              <Route path='/signin' element={<SignIn/>}/>
+              <Route path='/' element={<Home title={'Personal App'}/>}/>
+              <Route path='/dashboard' element={<Dashboard/>}/>
+              {/* <Route path='/signin' element={<SignIn/>}/>
               <Route path='/signup' element={<SignUp/>}/> */}
             </Routes>
           </Router>  
