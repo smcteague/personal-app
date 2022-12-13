@@ -87,12 +87,19 @@ export const GoogleButton = (props:buttonProps) =>{
     const signIn = async () =>{
         await signInWithGoogle()
         localStorage.setItem('myAuth', 'true')
+        onAuthStateChanged(auth, (user) => {
+        if (user) {
+            localStorage.setItem("token", user.uid);
+            }
+        });
+
         navigate('/dashboard')
+        window.location.reload()
     }
 
     const signUsOut = async () =>{
         await signOut(auth)
-        localStorage.setItem('myAuth', 'false')
+        localStorage.clear()
         navigate('/signin')
     }
 
@@ -118,8 +125,6 @@ interface userProps {
     password?: any
 }
 
-
-
 export const SignIn = () =>{
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
@@ -132,22 +137,28 @@ export const SignIn = () =>{
 
     const handleSnackClose = () => {
         setOpen(false)
-        navigate('/dashboard')
+        navigate('/dashboard', { state: { token: '' } } )
     }
 
     const onSubmit = async (data:any, event: any) => {
-        console.log(data.email, data.password)
+        localStorage.clear()
 
         signInWithEmailAndPassword(auth, data.email, data.password)
             .then((userCredential) =>{
                 localStorage.setItem('myAuth', 'true')
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                      localStorage.setItem("token", user.uid);
+                    }
+                  });
                 const user = userCredential.user;
                 navigate('/dashboard') 
+                window.location.reload()
             })
             .catch((error) =>{
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(error.message)
+                console.log(errorCode, error.message)
             });
     }
     return (
@@ -158,25 +169,22 @@ export const SignIn = () =>{
             <form onSubmit = {handleSubmit(onSubmit)}>
                 <div>
                     <label htmlFor='email'>Email</label>
-                    <Input {...register('email')} name='email' placeholder='place email here...or else'/>
+                    <Input {...register('email')} name='email' placeholder='place email here'/>
                 </div>
                 <div>
                     <label htmlFor='password'>Password</label>
-                    <Input2 {...register('password')} name='password' placeholder='place password here...or else' />
+                    <Input2 {...register('password')} name='password' placeholder='place password here' />
                 </div>
                 <Button type='submit'>Submit</Button>
             </form>
-            <NavA to = "/signup">Don't Have an Account? Register Now!! or else...</NavA>
+            <NavA to = "/signup">Don't Have an Account? Register Now!</NavA>
             <GoogleButton open={open} onClick={handleSnackClose} />
             <Snackbar message="Success" open={open} autoHideDuration={3000}>
                 <Alert severity='success'>
                     <AlertTitle>Succesful Sign In --- Redirect to Dashboard in 3 seconds</AlertTitle>
                 </Alert>
             </Snackbar>
-
-
-        </Container>
-        
+        </Container>       
     )
 }
 
@@ -196,8 +204,7 @@ export const SignUp = (props: userProps) => {
     }
 
     const onSubmit = async (data: any, event: any) => {
-        console.log(data.email, data.password)
-        console.log(auth)
+        localStorage.clear()
 
         createUserWithEmailAndPassword(auth, data.email, data.password)
             .then((userCredential) => {
@@ -210,10 +217,9 @@ export const SignUp = (props: userProps) => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorMessage)
+                console.log(errorCode, errorMessage)
             });
     }
-
     return (
         <Container maxWidth='sm' sx={signinStyles.containerStyle}>
             <Typography sx={signinStyles.typographyStyle}>
@@ -222,18 +228,17 @@ export const SignUp = (props: userProps) => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label htmlFor='email'>Email</label>
-                    <Input  {...register('email')} name='email' placeholder='enter email here...' />
+                    <Input  {...register('email')} name='email' placeholder='enter email here' />
                 </div>
                 <div>
                     <label htmlFor='password'>Password</label>
-                    <Input2  {...register('password')} name='password' placeholder='enter password here... or else' />
+                    <Input2  {...register('password')} name='password' placeholder='enter password here' />
                 </div>
                 <Button type='submit'>Submit</Button>
             </form>
             <Snackbar message='Success' open={open} autoHideDuration={3000}>
                 <Alert severity='success'>
                     <AlertTitle>Succesful Sign Up --- Redirect to Dashboard in 3 seconds</AlertTitle>
-
                 </Alert>
             </Snackbar>
         </Container>

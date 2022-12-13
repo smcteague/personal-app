@@ -28,6 +28,7 @@ import { ItemForm } from '../ItemForm/ItemForm';
 import { DataTable } from '../Datatable';
 
 
+
 const drawerWidth = 240;
 
 const myStyles = {
@@ -88,6 +89,9 @@ const myStyles = {
     toolbar_button: {
         marginLeft: 'auto',
         backgroundColor: theme.palette.primary.contrastText,
+        '&:hover': {
+            backgroundColor: '#ffeb3b',
+        },
     },
 };
 

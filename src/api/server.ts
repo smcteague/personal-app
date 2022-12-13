@@ -1,5 +1,4 @@
-let token = `test_user_token`;
-
+let token = localStorage.getItem('token')
 
 export const serverCalls = {
     create: async (data: any) => {
@@ -80,6 +79,9 @@ export const serverCalls = {
                 'x-access-token': `Bearer ${token}`
             },
         });
+        if (!response.ok) {
+            throw new Error('Failed to delete data from server')
+        }
     }
 }
 
