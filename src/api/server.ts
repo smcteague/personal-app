@@ -1,6 +1,9 @@
 let token = localStorage.getItem('token')
 
 export const serverCalls = {
+// #####################################################################
+// Item Info
+// ---------------------------------------------------------------------
     create: async (data: any) => {
         const response = await fetch(`http://localhost:5000/db/api/items`, {
             method: 'POST',
@@ -11,7 +14,7 @@ export const serverCalls = {
             body: JSON.stringify(data)
         });
         if (!response.ok) {
-            throw new Error('Failed to create new data on server')
+            throw new Error('Failed to create new item data on server')
         }
         return await response.json()
     },
@@ -25,7 +28,7 @@ export const serverCalls = {
         });
 
         if (!response.ok) {
-            throw new Error('Failed to fetch data from server')
+            throw new Error('Failed to fetch item data from server')
         }
         return await response.json()
     },
@@ -39,7 +42,7 @@ export const serverCalls = {
         });
 
         if (!response.ok) {
-            throw new Error('Failed to fetch data from server')
+            throw new Error('Failed to fetch item data from server')
         }
         return await response.json()
     },
@@ -53,7 +56,7 @@ export const serverCalls = {
         });
 
         if (!response.ok) {
-            throw new Error('Failed to fetch data from server')
+            throw new Error('Failed to fetch item data from server')
         }
         return await response.json()
     },    
@@ -67,7 +70,7 @@ export const serverCalls = {
             body: JSON.stringify(data)
         });
         if (!response.ok) {
-            throw new Error('Failed to create new data on server')
+            throw new Error('Failed to update item data on server')
         }
         return await response.json()
     },
@@ -80,8 +83,26 @@ export const serverCalls = {
             },
         });
         if (!response.ok) {
-            throw new Error('Failed to delete data from server')
+            throw new Error('Failed to delete item data from server')
         }
+    },
+
+    // #####################################################################
+    // Slack User Info
+    // ---------------------------------------------------------------------
+    create_slack_user: async (data: any) => {
+        const response = await fetch(`http://localhost:5000/db/api/slack_user`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
+        });
+        if (!response.ok) {
+            throw new Error('Failed to create new slack user data on server')
+        }
+        return await response.json()
     }
 }
 

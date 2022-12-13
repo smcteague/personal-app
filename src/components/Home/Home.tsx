@@ -96,7 +96,7 @@ export const Home = (props: Props) => {
                 <MainText>
                     <h1>{props.title}</h1>
                     <p>The convenience of a single app</p>
-                    <Button color='primary' variant='contained' component={Link} to='/dashboard'>See Your Data</Button>
+                    <Button color='primary' variant='contained' component={Link} to='/dashboard'>See Your Items</Button>
                 </MainText>
             </Main>
         </Root>

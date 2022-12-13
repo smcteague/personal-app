@@ -15,6 +15,7 @@ import {
 import { serverCalls } from '../../api';
 import { useGetData } from '../../custom_hooks';
 import { ItemForm } from '../ItemForm/ItemForm';
+import { SlackUserForm } from '../SlackUserForm/SlackUserForm';
 
 
 

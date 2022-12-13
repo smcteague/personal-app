@@ -25,7 +25,8 @@ interface ItemState {
     category: string;
     item: string;
     date_due: string;
-    date_reminder: string;}
+    date_reminder: string;
+}
 
 export const ItemForm = (props: ItemFormProps) => {
     const dispatch = useDispatch();

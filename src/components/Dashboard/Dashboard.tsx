@@ -23,8 +23,8 @@ import { ChevronRight, ChevronLeft } from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom';
 import { theme } from '../../Theme/themes';
 import { ItemForm } from '../ItemForm/ItemForm';
+import { SlackUserForm } from '../SlackUserForm/SlackUserForm';
 
-// import for DataTable
 import { DataTable } from '../Datatable';
 
 
@@ -146,12 +146,23 @@ export const Dashboard = () => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant='h6' noWrap>Dashboard</Typography>
-                    <Button sx={myStyles.toolbar_button} onClick={handleDialogClickOpen}>Create New Item</Button>
+                    {/* <Button sx={myStyles.toolbar_button} onClick={handleDialogClickOpen}>Create New Item</Button>
                     <Dialog open={dialogOpen} onClose={handleDialogClickClose} aria-labelledby='form-dialog-title'>
                         <DialogTitle id='form-dialog-title'>Add New Item</DialogTitle>
                         <DialogContent>
                             <DialogContentText>Add a New Item</DialogContentText>
                             <ItemForm />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleDialogClickClose} color='primary'>Cancel</Button>
+                        </DialogActions>
+                    </Dialog> */}
+                    <Button sx={myStyles.toolbar_button} onClick={handleDialogClickOpen}>Add Slack User Account</Button>
+                    <Dialog open={dialogOpen} onClose={handleDialogClickClose} aria-labelledby='form-dialog-title'>
+                        <DialogTitle id='form-dialog-title'>Add New Slack User Account</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>Add a New Slack User Account</DialogContentText>
+                            <SlackUserForm />
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={handleDialogClickClose} color='primary'>Cancel</Button>
@@ -186,7 +197,7 @@ export const Dashboard = () => {
             </MUIDrawer>
             <Box sx = {myStyles.content}>
                 <Box sx = {myStyles.drawerHeader}/>
-                <DataTable />  {/* Added DataTable here */}
+                <DataTable />
             </Box>
         </Box>
     )
