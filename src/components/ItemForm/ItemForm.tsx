@@ -45,7 +45,7 @@ export const ItemForm = (props: ItemFormProps) => {
             dispatch(chooseCategory(data.category))
             dispatch(chooseItem(data.item))
             dispatch(chooseDateDue(data.date_due))
-            dispatch(chooseDateReminder(data.date))
+            dispatch(chooseDateReminder(data.date_reminder))
             await serverCalls.create(store.getState())
             window.location.reload()
         }

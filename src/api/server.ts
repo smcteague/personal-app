@@ -11,7 +11,6 @@ export const serverCalls = {
             },
             body: JSON.stringify(data)
         });
-
         if (!response.ok) {
             throw new Error('Failed to create new data on server')
         }
