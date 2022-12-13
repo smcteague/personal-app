@@ -8,8 +8,7 @@ import 'firebase/auth'
 
 import { store } from './redux/store';
 import { theme } from './Theme/themes';
-// import { Home, Dashboard, SignIn, SignUp } from './components';
-import { Home, Dashboard } from './components';
+import { Home, Dashboard, SignIn, SignUp } from './components';
 import { firebaseConfig } from './firebaseConfig';
 import reportWebVitals from './reportWebVitals';
 import './styles.css'
@@ -27,8 +26,8 @@ root.render(
             <Routes>
               <Route path='/' element={<Home title={'Personal App'}/>}/>
               <Route path='/dashboard' element={<Dashboard/>}/>
-              {/* <Route path='/signin' element={<SignIn/>}/>
-              <Route path='/signup' element={<SignUp/>}/> */}
+              <Route path='/signin' element={<SignIn/>}/>
+              <Route path='/signup' element={<SignUp/>}/>
             </Routes>
           </Router>  
         </ThemeProvider>
