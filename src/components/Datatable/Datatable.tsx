@@ -38,21 +38,21 @@ const columns: GridColDef[] = [
     {
       field: 'date_created',
       headerName: 'Created Date',
-      width: 150,
+      width: 175,
       type: 'date',
       editable: true,
     },
     {
       field: 'date_due',
       headerName: 'Due Date',
-      width: 150,
+      width: 175,
       type: 'date',
       editable: true,
     },
     {
       field: 'date_reminder',
       headerName: 'Reminder Date',
-      width: 150,
+      width: 175,
       editable: true,
     },
     {
@@ -87,13 +87,11 @@ const columns: GridColDef[] = [
       getData()
     }
 
-    console.log(gridData) // a list of id's from the checked rows
-				// Checking Local Storage variable for authenticated user
+    console.log(gridData)
 				const MyAuth = localStorage.getItem('myAuth');
 				console.log(MyAuth);
-				//Conditional to render DataTable only for authenticated users
 			  if (MyAuth == 'true'){
-		    return ( //conditionally render datatable
+		    return (
 		        <div style={{ height: 600, width: '100%' }}>
 		            <h2>Items</h2>
 		            <DataGrid
@@ -121,7 +119,7 @@ const columns: GridColDef[] = [
 		        </div>
         )
     } else { 
-        return( // **new** does not render datatable if user is not authenticated
+        return(
         <div>
             <h3>Please Sign In to View Your Item Collection</h3>
         </div>

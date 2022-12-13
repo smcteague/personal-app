@@ -68,6 +68,10 @@ export const serverCalls = {
             },
             body: JSON.stringify(data)
         });
+        if (!response.ok) {
+            throw new Error('Failed to create new data on server')
+        }
+        return await response.json()
     },
     delete: async (id: string) => {
         const response = await fetch(`http://localhost:5000/db/api/items/${id}`, {

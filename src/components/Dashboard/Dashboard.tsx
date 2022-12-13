@@ -63,7 +63,6 @@ const myStyles = {
         width: drawerWidth,
         alignItems: 'center',
         padding: theme.spacing(0, 1),
-        // necessary for content to be below app bar
         ...theme.mixins.toolbar,
         justifyContent: 'flex-end',
     },
@@ -144,7 +143,6 @@ export const Dashboard = () => {
                     </IconButton>
                     <Typography variant='h6' noWrap>Dashboard</Typography>
                     <Button sx={myStyles.toolbar_button} onClick={handleDialogClickOpen}>Create New Item</Button>
-                    {/* Dialog Box Open */}
                     <Dialog open={dialogOpen} onClose={handleDialogClickClose} aria-labelledby='form-dialog-title'>
                         <DialogTitle id='form-dialog-title'>Add New Item</DialogTitle>
                         <DialogContent>

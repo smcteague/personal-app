@@ -22,17 +22,10 @@ interface ItemFormProps {
 }
 
 interface ItemState {
-    name: string;
-    price: number;
-    description: string;
-    camera_quality: string;
-    flight_time: string;
-    max_speed: string;
-    dimensions: string;
-    weight: string;
-    cost_of_production: number;
-    series: string; 
-}
+    category: string;
+    item: string;
+    date_due: string;
+    date_reminder: string;}
 
 export const ItemForm = (props: ItemFormProps) => {
     const dispatch = useDispatch();
@@ -61,44 +54,20 @@ export const ItemForm = (props: ItemFormProps) => {
         <div>
             <form onSubmit = {handleSubmit(onSubmit)}>
                 <div>
-                    <label htmlFor="name">Item Name</label>
-                    <Input {...register('name')} name="name" placeholder='Name' />
+                    <label htmlFor="category">Category</label>
+                    <Input {...register('category')} name="category" placeholder='Category' />
                 </div>
                 <div>
-                    <label htmlFor="price">Price</label>
-                    <Input {...register('price')} name="price" placeholder="Price"/>
+                    <label htmlFor="item">Item</label>
+                    <Input {...register('item')} name="item" placeholder="Item"/>
                 </div>
                 <div>
-                    <label htmlFor="camera_quality">Camera Quality</label>
-                    <Input {...register('camera_quality')} name="camera_quality" placeholder="Camera Quality"/>
+                    <label htmlFor="date_due">Due Date</label>
+                    <Input {...register('date_due')} name="date_due" placeholder="Due Date"/>
                 </div>
                 <div>
-                    <label htmlFor="flight_time">Flight Time</label>
-                    <Input {...register('flight_time')} name="flight_time" placeholder="Flight Time"/>
-                </div>
-                <div>
-                    <label htmlFor="description">Description</label>
-                    <Input {...register('description')} name="description" placeholder="Description"/>
-                </div>
-                <div>
-                    <label htmlFor="dimensions">Dimensions</label>
-                    <Input {...register('dimensions')} name="dimensions" placeholder="Dimensions"/>
-                </div>
-                <div>
-                    <label htmlFor="max_speed">Max Speed</label>
-                    <Input {...register('max_speed')} name="max_speed" placeholder="Max Speed"/>
-                </div>
-                <div>
-                    <label htmlFor="weight">Weight</label>
-                    <Input {...register('weight')} name="weight" placeholder="Weight"/>
-                </div>
-                <div>
-                    <label htmlFor="cost_of_production">Cost Of Production</label>
-                    <Input {...register('cost_of_production')} name="cost_of_production" placeholder="Cost Of Production"/>
-                </div>
-                <div>
-                    <label htmlFor="series">Series</label>
-                    <Input {...register('series')} name="series" placeholder="Series"/>
+                    <label htmlFor="date_reminder">Reminder Date</label>
+                    <Input {...register('date_reminder')} name="date_reminder" placeholder="Reminder Date"/>
                 </div>
                 <Button type='submit'>Submit</Button>
             </form>
