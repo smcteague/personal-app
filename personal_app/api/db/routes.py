@@ -2,8 +2,8 @@ from flask import Blueprint, request, jsonify
 
 from datetime import datetime, timezone
 
-from personal_app.helpers import token_required
-from personal_app.models import db, Item, item_schema, items_schema
+from helpers import token_required
+from models import db, Item, item_schema, items_schema
 
 
 db_api = Blueprint('db_api', __name__, url_prefix = '/db/api')

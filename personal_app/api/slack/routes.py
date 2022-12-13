@@ -7,7 +7,7 @@ import requests
 import json
 import re
 
-from personal_app.api.db.routes import get_items
+from api.db.routes import get_items
 
 
 slack_api = Blueprint('slack_api', __name__, url_prefix = '/slack/api')
