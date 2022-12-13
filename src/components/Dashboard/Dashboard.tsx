@@ -100,6 +100,7 @@ export const Dashboard = () => {
 
     const [open, setOpen] = useState(false);
     const [dialogOpen, setDialogOpen] = useState(false);
+    const [dialogOpenSlackUser, setDialogOpenSlackUser] = useState(false);
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -115,6 +116,14 @@ export const Dashboard = () => {
 
     const handleDialogClickClose = () => {
         setDialogOpen(false);
+    };
+
+    const handleDialogClickOpenSlackUser = () => {
+        setDialogOpenSlackUser(true);
+    };
+
+    const handleDialogClickCloseSlackUser = () => {
+        setDialogOpenSlackUser(false);
     };
 
     const itemsList = [
@@ -146,7 +155,7 @@ export const Dashboard = () => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant='h6' noWrap>Dashboard</Typography>
-                    {/* <Button sx={myStyles.toolbar_button} onClick={handleDialogClickOpen}>Create New Item</Button>
+                    <Button sx={myStyles.toolbar_button} onClick={handleDialogClickOpen}>Create New Item</Button>
                     <Dialog open={dialogOpen} onClose={handleDialogClickClose} aria-labelledby='form-dialog-title'>
                         <DialogTitle id='form-dialog-title'>Add New Item</DialogTitle>
                         <DialogContent>
@@ -156,16 +165,16 @@ export const Dashboard = () => {
                         <DialogActions>
                             <Button onClick={handleDialogClickClose} color='primary'>Cancel</Button>
                         </DialogActions>
-                    </Dialog> */}
-                    <Button sx={myStyles.toolbar_button} onClick={handleDialogClickOpen}>Add Slack User Account</Button>
-                    <Dialog open={dialogOpen} onClose={handleDialogClickClose} aria-labelledby='form-dialog-title'>
+                    </Dialog>
+                    <Button sx={myStyles.toolbar_button} onClick={handleDialogClickOpenSlackUser}>Add Slack User Account</Button>
+                    <Dialog open={dialogOpenSlackUser} onClose={handleDialogClickCloseSlackUser} aria-labelledby='form-dialog-title'>
                         <DialogTitle id='form-dialog-title'>Add New Slack User Account</DialogTitle>
                         <DialogContent>
                             <DialogContentText>Add a New Slack User Account</DialogContentText>
                             <SlackUserForm />
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={handleDialogClickClose} color='primary'>Cancel</Button>
+                            <Button onClick={handleDialogClickCloseSlackUser} color='primary'>Cancel</Button>
                         </DialogActions>
                     </Dialog>
                 </Toolbar>
