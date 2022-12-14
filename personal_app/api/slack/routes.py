@@ -118,9 +118,9 @@ def slack_event():
 
         string = text.lower()
         category = re.findall('add\s+\[(.+)\]\s+', string)[0]
-        item = re.findall('\]\s+(.+)\s+due', string)[0]
-        date_due = re.findall('due\s+([A-Za-z0-9]+\s+[0-9]+\s+[0-9at]+?\s+[0-9:0-9AMPMampm]+)\s+', string)[0]
-        date_reminder = re.findall('remind\s+([A-Za-z0-9]+\s+[0-9]+\s+[0-9at]+?\s+[0-9:0-9AMPMampm]+)', string)[0]
+        item = re.findall('\]\s+item:\s+(.+)\s+due', string)[0]
+        date_due = re.findall('due:\s+([A-Za-z0-9]+\s+[0-9]+\s+[0-9at]+?\s+[0-9:0-9AMPMampm]+)\s+', string)[0]
+        date_reminder = re.findall('remind:\s+([A-Za-z0-9]+\s+[0-9]+\s+[0-9at]+?\s+[0-9:0-9AMPMampm]+)', string)[0]
 
         # --------------------------------------------------------------
         # console logging
