@@ -67,7 +67,7 @@ class SlackUser(db.Model):
 
 class SlackUserSchema(ma.Schema):
     class Meta:
-        fields = ['id', 'slack_workspace_url', 'slack_user_id', 'date_recorded']
+        fields = ['id', 'slack_workspace_url', 'slack_user_id', 'date_recorded', 'user_token']
 
 
 slack_user_schema = SlackUserSchema()

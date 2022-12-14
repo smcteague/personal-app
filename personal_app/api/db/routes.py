@@ -116,3 +116,13 @@ def create_slack_user(token):
     response = item_schema.dump(slack_user)
 
     return jsonify(response)
+
+@db_api.route('/slack_user/<slack_workspace_url>/<slack_user_id>', methods=['GET'])
+# @token_required
+def get_slack_user(slack_workspace_url, slack_user_id):
+    slack_user = SlackUser.query.filter(SlackUser.slack_workspace_url == slack_workspace_url, \
+        SlackUser.slack_user_id == slack_user_id).first()
+
+    response = slack_user_schema.dump(slack_user)
+
+    return jsonify(response)
