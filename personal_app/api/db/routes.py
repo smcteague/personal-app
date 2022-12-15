@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 
+from sqlalchemy import func
 from datetime import datetime, timezone
 
 from personal_app.helpers import token_required
@@ -46,8 +47,9 @@ def get_items(token):
 @token_required
 def get_items_query_category(token, category):
     owner = token
-    items = Item.query.filter_by(user_token=owner, category=category)\
-        .order_by(Item.date_due.desc())
+    items = Item.query.filter(Item.user_token == owner, \
+        func.lower(Item.category) == category)\
+                .order_by(Item.date_due.asc())
 
     response = items_schema.dump(items)
 

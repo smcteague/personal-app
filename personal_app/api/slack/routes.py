@@ -188,10 +188,25 @@ def slack_event():
         print(f"---- {event_id}: {event_id_dict[event_id]} ---- ok")
         # --------------------------------------------------------------
 
+        header_get_slack_user_info = {
+            'Content-Type': 'application/json',
+         }
+
+        response_get_slack_user_info = requests.get(f'{request.root_url}db/api/slack_user/{channel_id}/{user_id}', \
+            headers=header_get_slack_user_info)
+        
+        # --------------------------------------------------------------
+        # console logging
+        # --------------------------------------------------------------
+        print(f"response_get_slack_user_info: {response_get_slack_user_info.json()}")
+        # --------------------------------------------------------------
+
         headers = {
             'Content-Type': 'application/json',
-            'x-access-token': 'Bearer test_user_token'
+            'x-access-token': f"Bearer {response_get_slack_user_info.json()['user_token']}"
         }
+
+        print(f"headers: {headers}")
 
         category = ''
         keyword = ''
@@ -370,9 +385,22 @@ def slack_event():
         print(f"---- {event_id}: {event_id_dict[event_id]} ---- ok")
         # --------------------------------------------------------------
 
+        header_get_slack_user_info = {
+            'Content-Type': 'application/json',
+         }
+
+        response_get_slack_user_info = requests.get(f'{request.root_url}db/api/slack_user/{channel_id}/{user_id}', \
+            headers=header_get_slack_user_info)
+        
+        # --------------------------------------------------------------
+        # console logging
+        # --------------------------------------------------------------
+        print(f"response_get_slack_user_info: {response_get_slack_user_info.json()}")
+        # --------------------------------------------------------------
+
         headers = {
             'Content-Type': 'application/json',
-            'x-access-token': 'Bearer test_user_token'
+            'x-access-token': f"Bearer {response_get_slack_user_info.json()['user_token']}"
         }
 
         # use original text due to Id being case-sensitive
