@@ -54,7 +54,7 @@ const signinStyles = {
         fontSize: '2em'
     },
     containerStyle: {
-        marginTop: '2em',
+        marginTop: '2em'
     },
     snackBar: {
         color: 'white',
@@ -62,7 +62,43 @@ const signinStyles = {
     }
 }
 
-const NavA = styled(Link) ({
+const Root = styled('div')({
+    padding: 0,
+    margin: 0
+})
+
+const NavbarContainer = styled('div')({
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+})
+
+const Logo = styled('div')({
+    margin: '0 0 0 0.45em',
+})
+
+const LogoA = styled(Link)({
+    listStyle: 'none',
+    textTransform: 'capitalize',
+    textDecoration: 'none',
+    color: '#2DB67E'
+})
+
+const LogoNavigation = styled('div')({
+    listStyle: 'none',
+    textTransform: 'capitalize',
+    textDecoration: 'none',
+    display: 'flex'
+})
+
+const NavA = styled(Link)({
+    display: 'block',
+    padding: '1em',
+    textDecoration: 'none',
+    color: '#2DB67E'
+})
+
+const NavB = styled(Link) ({
     display: 'block',
     color: 'black',
     fontFamily: 'sans-serif',
@@ -162,29 +198,50 @@ export const SignIn = () =>{
             });
     }
     return (
-        <Container maxWidth='sm' sx={signinStyles.containerStyle}>
-            <Typography sx={signinStyles.typographyStyle}>
-                Sign In Below
-            </Typography>
-            <form onSubmit = {handleSubmit(onSubmit)}>
-                <div>
-                    <label htmlFor='email'>Email</label>
-                    <Input {...register('email')} name='email' placeholder='place email here'/>
-                </div>
-                <div>
-                    <label htmlFor='password'>Password</label>
-                    <Input2 {...register('password')} name='password' placeholder='place password here' />
-                </div>
-                <Button type='submit'>Submit</Button>
-            </form>
-            <NavA to = "/signup">Don't Have an Account? Register Now!</NavA>
-            <GoogleButton open={open} onClick={handleSnackClose} />
-            <Snackbar message="Success" open={open} autoHideDuration={3000}>
-                <Alert severity='success'>
-                    <AlertTitle>Succesful Sign In --- Redirect to Dashboard in 3 seconds</AlertTitle>
-                </Alert>
-            </Snackbar>
-        </Container>       
+        <Container>
+            <NavbarContainer>
+                <Logo>
+                    <LogoA to="/"><Typography variant='h4'>Personal App</Typography></LogoA>
+                </Logo>
+                <LogoNavigation>
+                    <li>
+                        <NavA to="/"><Typography variant='h5'>Home</Typography></NavA>
+                    </li>
+                    <li>
+                        <NavA to="/dashboard"><Typography variant='h5'>Dashboard</Typography></NavA>
+                    </li>
+                    <li>
+                        <NavA to="/signin"><Typography variant='h5'>Sign In | Out</Typography></NavA>
+                    </li>
+                    <li>
+                        <NavA to="/signup"><Typography variant='h5'>Sign Up</Typography></NavA>
+                    </li>
+                </LogoNavigation>
+            </NavbarContainer>
+            <Container maxWidth='sm' sx={signinStyles.containerStyle}>
+                <Typography sx={signinStyles.typographyStyle}>
+                    Sign In Below
+                </Typography>
+                <form onSubmit = {handleSubmit(onSubmit)}>
+                    <div>
+                        <label htmlFor='email'>Email</label>
+                        <Input {...register('email')} name='email' placeholder='place email here'/>
+                    </div>
+                    <div>
+                        <label htmlFor='password'>Password</label>
+                        <Input2 {...register('password')} name='password' placeholder='place password here' />
+                    </div>
+                    <Button type='submit'>Submit</Button>
+                </form>
+                <NavB to = "/signup">Don't Have an Account? Register Now!</NavB>
+                <GoogleButton open={open} onClick={handleSnackClose} />
+                <Snackbar message="Success" open={open} autoHideDuration={3000}>
+                    <Alert severity='success'>
+                        <AlertTitle>Succesful Sign In --- Redirect to Dashboard in 3 seconds</AlertTitle>
+                    </Alert>
+                </Snackbar>
+            </Container>
+        </Container>  
     )
 }
 
@@ -221,26 +278,47 @@ export const SignUp = (props: userProps) => {
             });
     }
     return (
-        <Container maxWidth='sm' sx={signinStyles.containerStyle}>
-            <Typography sx={signinStyles.typographyStyle}>
-                Create Your Account Below
-            </Typography>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <label htmlFor='email'>Email</label>
-                    <Input  {...register('email')} name='email' placeholder='enter email here' />
-                </div>
-                <div>
-                    <label htmlFor='password'>Password</label>
-                    <Input2  {...register('password')} name='password' placeholder='enter password here' />
-                </div>
-                <Button type='submit'>Submit</Button>
-            </form>
-            <Snackbar message='Success' open={open} autoHideDuration={3000}>
-                <Alert severity='success'>
-                    <AlertTitle>Succesful Sign Up --- Redirect to Dashboard in 3 seconds</AlertTitle>
-                </Alert>
-            </Snackbar>
+        <Container>
+            <NavbarContainer>
+                <Logo>
+                    <LogoA to="/"><Typography variant='h4'>Personal App</Typography></LogoA>
+                </Logo>
+                <LogoNavigation>
+                    <li>
+                        <NavA to="/"><Typography variant='h5'>Home</Typography></NavA>
+                    </li>
+                    <li>
+                        <NavA to="/dashboard"><Typography variant='h5'>Dashboard</Typography></NavA>
+                    </li>
+                    <li>
+                        <NavA to="/signin"><Typography variant='h5'>Sign In | Out</Typography></NavA>
+                    </li>
+                    <li>
+                        <NavA to="/signup"><Typography variant='h5'>Sign Up</Typography></NavA>
+                    </li>
+                </LogoNavigation>
+            </NavbarContainer>
+            <Container maxWidth='sm' sx={signinStyles.containerStyle}>
+                <Typography sx={signinStyles.typographyStyle}>
+                    Create Your Account Below
+                </Typography>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div>
+                        <label htmlFor='email'>Email</label>
+                        <Input  {...register('email')} name='email' placeholder='enter email here' />
+                    </div>
+                    <div>
+                        <label htmlFor='password'>Password</label>
+                        <Input2  {...register('password')} name='password' placeholder='enter password here' />
+                    </div>
+                    <Button type='submit'>Submit</Button>
+                </form>
+                <Snackbar message='Success' open={open} autoHideDuration={3000}>
+                    <Alert severity='success'>
+                        <AlertTitle>Succesful Sign Up --- Redirect to Dashboard in 3 seconds</AlertTitle>
+                    </Alert>
+                </Snackbar>
+            </Container>
         </Container>
     )
 }
