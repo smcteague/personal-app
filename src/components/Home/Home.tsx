@@ -1,10 +1,12 @@
 import React from 'react';
 import { styled } from '@mui/system';
-import { Button } from '@mui/material';
+import { 
+    Button,
+    Typography 
+} from '@mui/material';
 import { Link } from 'react-router-dom';
 
-// import { GoogleButton } from '../SignIn/SignIn'
-// import _______image from '../../assets/images/_______image.jpg';
+import backgroundimage from '../../assets/rubaitul-azad-WRTBo4wr4h8-unsplash.jpg';
 
 
 interface Props {
@@ -22,20 +24,20 @@ const NavbarContainer = styled('div')({
     alignItems: 'center'
 })
 
-const Logo = styled('h1')({
-    margin: '0 0 0 0.45em'
+const Logo = styled('div')({
+    margin: '0 0 0 0.45em',
 })
 
 const LogoA = styled(Link)({
-    color: 'rgb(28,24,22)',
     listStyle: 'none',
-    textTransform: 'uppercase',
-    textDecoration: 'none'
+    textTransform: 'capitalize',
+    textDecoration: 'none',
+    color: '#2DB67E'
 })
 
-const LogoNavigation = styled('h1')({
+const LogoNavigation = styled('div')({
     listStyle: 'none',
-    textTransform: 'uppercase',
+    textTransform: 'capitalize',
     textDecoration: 'none',
     display: 'flex'
 })
@@ -43,14 +45,15 @@ const LogoNavigation = styled('h1')({
 const NavA = styled(Link)({
     display: 'block',
     padding: '1em',
-    color: 'black'
+    textDecoration: 'none',
+    color: '#2DB67E'
 })
 
 const Main = styled('main')({
-    // backgroundImage: `linear-gradient(
-    //     rgba(0,0,0,0.5), 
-    //     rgba(0,0,0,0.5)),
-    //     url(${_______image})`,
+    backgroundImage: `linear-gradient(
+        rgba(0,0,0,0.0), 
+        rgba(0,0,0,0.0)),
+        url(${backgroundimage})`,
     width: '100%',
     height: '100%',
     backgroundSize: 'cover',
@@ -60,13 +63,23 @@ const Main = styled('main')({
 })
 
 const MainText = styled('div')({
-    textAlign: 'center',
-    position: 'relative',
+    textAlign: 'left',
+    position: 'absolute',
     top: '50%',
-    left: '50%',
+    left: '25%',
     transform: 'translate(-50%, -50%)',
     color: 'white'
 })
+
+const myStyles = {
+    main_button: {
+        marginLeft: 'auto',
+        backgroundColor: '#DF1D5A',
+        '&:hover': {
+            backgroundColor: '#36C5F1',
+        },
+    }
+}
 
 
 
@@ -75,28 +88,28 @@ export const Home = (props: Props) => {
         <Root>
             <NavbarContainer>
                 <Logo>
-                    <LogoA to="/">Brand</LogoA>
+                    <LogoA to="/"><Typography variant='h4'>Personal App</Typography></LogoA>
                 </Logo>
                 <LogoNavigation>
                     <li>
-                        <NavA to="/">Home</NavA>
+                        <NavA to="/"><Typography variant='h5'>Home</Typography></NavA>
                     </li>
                     <li>
-                        <NavA to="/dashboard">Dashboard</NavA>
+                        <NavA to="/dashboard"><Typography variant='h5'>Dashboard</Typography></NavA>
                     </li>
                     <li>
-                        <NavA to="/signin">Sign In</NavA>
+                        <NavA to="/signin"><Typography variant='h5'>Sign In | Out</Typography></NavA>
                     </li>
                     <li>
-                        <NavA to="/signup">Sign Up</NavA>
+                        <NavA to="/signup"><Typography variant='h5'>Sign Up</Typography></NavA>
                     </li>
                 </LogoNavigation>
             </NavbarContainer>
             <Main>
                 <MainText>
-                    <h1>{props.title}</h1>
-                    <p>The convenience of a single app</p>
-                    <Button color='primary' variant='contained' component={Link} to='/dashboard'>See Your Items</Button>
+                    <Typography variant='h2'>{props.title}</Typography>
+                    <Typography variant='h6'>With the convenience of Slack integration!</Typography>
+                    <Button sx={myStyles.main_button} variant='contained' component={Link} to='/dashboard'>See Your Items</Button>
                 </MainText>
             </Main>
         </Root>
