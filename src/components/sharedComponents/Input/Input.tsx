@@ -20,7 +20,6 @@ export const Input = forwardRef((props: inputType, ref) => {
     );
 });
 
-// input with password field
 export const Input2 = forwardRef((props: inputType, ref) => {
     return (
         <TextField

@@ -25,6 +25,9 @@ import { useForm } from 'react-hook-form';
 
 import { Input, Input2 } from '../sharedComponents/Input';
 
+import backgroundimage from '../../assets/rubaitul-azad-WRTBo4wr4h8-unsplash.jpg';
+
+
 const signinStyles = {
     googleButton: {
         backgroundColor: 'rgb(66,133,244)',
@@ -96,6 +99,29 @@ const NavA = styled(Link)({
     padding: '1em',
     textDecoration: 'none',
     color: '#2DB67E'
+})
+
+const Main = styled('main')({
+    backgroundImage: `linear-gradient(
+        rgba(0,0,0,0.0), 
+        rgba(0,0,0,0.0)),
+        url(${backgroundimage})`,
+    width: '100%',
+    height: '100%',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    position: 'absolute',
+    overflow: 'hidden'
+})
+
+const MainText = styled('div')({
+    textAlign: 'left',
+    position: 'absolute',
+    top: '50%',
+    left: '25%',
+    transform: 'translate(-50%, -50%)',
+    color: 'white'
 })
 
 const NavB = styled(Link) ({
@@ -198,7 +224,7 @@ export const SignIn = () =>{
             });
     }
     return (
-        <Container>
+        <Container maxWidth={false} disableGutters={true}>
             <NavbarContainer>
                 <Logo>
                     <LogoA to="/"><Typography variant='h4'>Personal App</Typography></LogoA>
@@ -218,29 +244,37 @@ export const SignIn = () =>{
                     </li>
                 </LogoNavigation>
             </NavbarContainer>
-            <Container maxWidth='sm' sx={signinStyles.containerStyle}>
-                <Typography sx={signinStyles.typographyStyle}>
-                    Sign In Below
-                </Typography>
-                <form onSubmit = {handleSubmit(onSubmit)}>
-                    <div>
-                        <label htmlFor='email'>Email</label>
-                        <Input {...register('email')} name='email' placeholder='place email here'/>
-                    </div>
-                    <div>
-                        <label htmlFor='password'>Password</label>
-                        <Input2 {...register('password')} name='password' placeholder='place password here' />
-                    </div>
-                    <Button type='submit'>Submit</Button>
-                </form>
-                <NavB to = "/signup">Don't Have an Account? Register Now!</NavB>
-                <GoogleButton open={open} onClick={handleSnackClose} />
-                <Snackbar message="Success" open={open} autoHideDuration={3000}>
-                    <Alert severity='success'>
-                        <AlertTitle>Succesful Sign In --- Redirect to Dashboard in 3 seconds</AlertTitle>
-                    </Alert>
-                </Snackbar>
-            </Container>
+            <Main>
+                <MainText>
+                    <Container maxWidth='sm' sx={signinStyles.containerStyle} disableGutters={true}>
+                        <Typography sx={signinStyles.typographyStyle}>
+                            Sign In Below
+                        </Typography>
+                        <form onSubmit = {handleSubmit(onSubmit)}>
+                            <div>
+                            <Typography>
+                                <label htmlFor='email'>Email</label>
+                            </Typography>
+                            <Input {...register('email')} name='email' placeholder='place email here'/>
+                            </div>
+                            <div>
+                            <Typography>
+                                <label htmlFor='password'>Password</label>
+                            </Typography>
+                            <Input2 {...register('password')} name='password' placeholder='place password here' />
+                            </div>
+                            <Button type='submit'>Submit</Button>
+                        </form>
+                        <NavB to = "/signup">Don't Have an Account? Register Now!</NavB>
+                        <GoogleButton open={open} onClick={handleSnackClose} />
+                        <Snackbar message="Success" open={open} autoHideDuration={3000}>
+                            <Alert severity='success'>
+                                <AlertTitle>Succesful Sign In --- Redirect to Dashboard in 3 seconds</AlertTitle>
+                            </Alert>
+                        </Snackbar>
+                    </Container>
+                </MainText>
+            </Main>
         </Container>  
     )
 }
@@ -278,7 +312,7 @@ export const SignUp = (props: userProps) => {
             });
     }
     return (
-        <Container>
+        <Container maxWidth={false} disableGutters={true}>
             <NavbarContainer>
                 <Logo>
                     <LogoA to="/"><Typography variant='h4'>Personal App</Typography></LogoA>
@@ -298,27 +332,35 @@ export const SignUp = (props: userProps) => {
                     </li>
                 </LogoNavigation>
             </NavbarContainer>
-            <Container maxWidth='sm' sx={signinStyles.containerStyle}>
-                <Typography sx={signinStyles.typographyStyle}>
-                    Create Your Account Below
-                </Typography>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div>
-                        <label htmlFor='email'>Email</label>
-                        <Input  {...register('email')} name='email' placeholder='enter email here' />
-                    </div>
-                    <div>
-                        <label htmlFor='password'>Password</label>
-                        <Input2  {...register('password')} name='password' placeholder='enter password here' />
-                    </div>
-                    <Button type='submit'>Submit</Button>
-                </form>
-                <Snackbar message='Success' open={open} autoHideDuration={3000}>
-                    <Alert severity='success'>
-                        <AlertTitle>Succesful Sign Up --- Redirect to Dashboard in 3 seconds</AlertTitle>
-                    </Alert>
-                </Snackbar>
-            </Container>
+            <Main>
+                <MainText>
+                    <Container maxWidth='sm' sx={signinStyles.containerStyle} disableGutters={true}>
+                        <Typography sx={signinStyles.typographyStyle}>
+                            Create Your Account Below
+                        </Typography>
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <div>
+                                <Typography>
+                                    <label htmlFor='email'>Email</label>
+                                </Typography>
+                                <Input  {...register('email')} name='email' placeholder='enter email here' />
+                            </div>
+                            <div>
+                                <Typography>
+                                    <label htmlFor='password'>Password</label>
+                                </Typography>
+                                <Input2  {...register('password')} name='password' placeholder='enter password here' />
+                            </div>
+                            <Button type='submit'>Submit</Button>
+                        </form>
+                        <Snackbar message='Success' open={open} autoHideDuration={3000}>
+                            <Alert severity='success'>
+                                <AlertTitle>Succesful Sign Up --- Redirect to Dashboard in 3 seconds</AlertTitle>
+                            </Alert>
+                        </Snackbar>
+                    </Container>
+                </MainText>
+            </Main>
         </Container>
     )
 }

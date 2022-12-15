@@ -21,7 +21,7 @@ const Root = styled('div')({
 const NavbarContainer = styled('div')({
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
 })
 
 const Logo = styled('div')({
@@ -59,7 +59,8 @@ const Main = styled('main')({
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
-    position: 'absolute'
+    position: 'absolute',
+    overflow: 'hidden'
 })
 
 const MainText = styled('div')({
