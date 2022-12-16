@@ -90,9 +90,11 @@ const myStyles = {
         marginLeft: 'auto',
         backgroundColor: theme.palette.primary.contrastText,
         '&:hover': {
-            backgroundColor: '#ffeb3b',
+            backgroundColor: '#EBB22D',
         },
     },
+    backgroundColor: "#662E9B",
+
 };
 
 export const Dashboard = () => {
@@ -140,7 +142,7 @@ export const Dashboard = () => {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar
+            <AppBar style={{ background: '#2DB67E' }}
                 sx={open ? myStyles.appBarShift : myStyles.appBar}
                 position = 'fixed'
             >

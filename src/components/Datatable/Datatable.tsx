@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { DataGrid, GridColDef, GridSelectionModel } from '@mui/x-data-grid';
 import { 
   Button, 
+  Typography,
   Dialog,
   DialogActions,
   DialogContent,
@@ -17,6 +18,15 @@ import { useGetData } from '../../custom_hooks';
 import { ItemForm } from '../ItemForm/ItemForm';
 import { SlackUserForm } from '../SlackUserForm/SlackUserForm';
 
+const myStyles = {
+  main_button: {
+      marginLeft: 'auto',
+      backgroundColor: '#DF1D5A',
+      '&:hover': {
+          backgroundColor: '#36C5F1',
+      },
+  }
+}
 
 
 const columns: GridColDef[] = [
@@ -104,8 +114,8 @@ const columns: GridColDef[] = [
 		                onSelectionModelChange={(newSelectionModel) => { setData(newSelectionModel); }}
 		                {...itemData}
 		            />
-		            <Button onClick={handleOpen}>Update</Button>
-		            <Button variant="contained" color="secondary" onClick={deleteData}>Delete</Button>
+                <Button onClick={handleOpen}><Typography variant='inherit' color='black'>Update</Typography></Button>
+                <Button sx={myStyles.main_button} variant='contained' onClick={deleteData}>Delete</Button>
 		            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
 		                <DialogTitle id="form-dialog-title">Update Item</DialogTitle>
 		                <DialogContent>

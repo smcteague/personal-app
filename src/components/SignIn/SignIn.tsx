@@ -30,7 +30,10 @@ import backgroundimage from '../../assets/rubaitul-azad-WRTBo4wr4h8-unsplash.jpg
 
 const signinStyles = {
     googleButton: {
-        backgroundColor: 'rgb(66,133,244)',
+        backgroundColor: '#DF1D5A',
+        '&:hover': {
+            backgroundColor: '#36C5F1',
+        },
         margin: '2em',
         padding: '0',
         color: 'white',
@@ -54,7 +57,8 @@ const signinStyles = {
     typographyStyle: {
         fontFamily: 'Roboto, arial, sans-serif',
         textAlign: 'center',
-        fontSize: '2em'
+        fontSize: '2em',
+        width: '400px'
     },
     containerStyle: {
         marginTop: '2em'
@@ -124,11 +128,22 @@ const MainText = styled('div')({
     color: 'white'
 })
 
+const myStyles = {
+    main_button: {
+        marginLeft: 'auto',
+        backgroundColor: '#DF1D5A',
+        '&:hover': {
+            backgroundColor: '#36C5F1',
+        },
+    }
+}
+
 const NavB = styled(Link) ({
     display: 'block',
-    color: 'black',
+    color: 'white',
     fontFamily: 'sans-serif',
-    marginBottom: '20px'
+    marginBottom: '20px',
+    textDecoration: 'none'
 })
 
 const Alert = (props: AlertProps) => {
@@ -173,7 +188,7 @@ export const GoogleButton = (props:buttonProps) =>{
 
     if (MyAuth == 'true'){
         return (
-            <Button variant='contained' color='secondary' onClick={signUsOut}>Sign Out</Button>
+            <Button sx={myStyles.main_button} variant='contained' onClick={signUsOut}>Sign Out</Button>
         )
     } else {
         return (
@@ -246,7 +261,7 @@ export const SignIn = () =>{
             </NavbarContainer>
             <Main>
                 <MainText>
-                    <Container maxWidth='sm' sx={signinStyles.containerStyle} disableGutters={true}>
+                    <Container maxWidth='sm' sx={signinStyles.containerStyle}>
                         <Typography sx={signinStyles.typographyStyle}>
                             Sign In Below
                         </Typography>
@@ -263,7 +278,7 @@ export const SignIn = () =>{
                             </Typography>
                             <Input2 {...register('password')} name='password' placeholder='place password here' />
                             </div>
-                            <Button type='submit'>Submit</Button>
+                            <Button type='submit'><Typography variant='h6' color='white'>Submit</Typography></Button>
                         </form>
                         <NavB to = "/signup">Don't Have an Account? Register Now!</NavB>
                         <GoogleButton open={open} onClick={handleSnackClose} />
@@ -334,7 +349,7 @@ export const SignUp = (props: userProps) => {
             </NavbarContainer>
             <Main>
                 <MainText>
-                    <Container maxWidth='sm' sx={signinStyles.containerStyle} disableGutters={true}>
+                    <Container maxWidth='sm' sx={signinStyles.containerStyle}>
                         <Typography sx={signinStyles.typographyStyle}>
                             Create Your Account Below
                         </Typography>
@@ -351,7 +366,7 @@ export const SignUp = (props: userProps) => {
                                 </Typography>
                                 <Input2  {...register('password')} name='password' placeholder='enter password here' />
                             </div>
-                            <Button type='submit'>Submit</Button>
+                            <Button type='submit'><Typography variant='h6' color='white'>Submit</Typography></Button>
                         </form>
                         <Snackbar message='Success' open={open} autoHideDuration={3000}>
                             <Alert severity='success'>
