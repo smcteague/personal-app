@@ -42,11 +42,11 @@ def slack_event():
 
     bytes_data = request.data
     dict_data = json.loads(bytes_data)
-
+    
     # --------------------------------------------------------------
     # console logging
     # --------------------------------------------------------------
-    print(f"----dict_data: {dict_data} ----")
+    print(f"----dict_data: {json.dumps(dict_data, indent=4)} ----")
     # --------------------------------------------------------------
 
     event_id = dict_data['event_id']
@@ -155,10 +155,11 @@ def slack_event():
         # --------------------------------------------------------------
         # console logging
         # --------------------------------------------------------------
-        print(f"---- response.text: {response.text} ----")
+        response_text = json.loads(response.text)
+        print(f"---- response.text: {json.dumps(response_text, indent=4)} ----")
         # --------------------------------------------------------------
 
-        client.chat_postMessage(channel=channel_id, text=f"Added:\n\n {response.text}")
+        client.chat_postMessage(channel=channel_id, text=f"Added:\n\n {json.dumps(response_text, indent=4)}")
 
         # --------------------------------------------------------------
         # Need to respond back to slack api with 200 code hopefully
@@ -232,10 +233,11 @@ def slack_event():
         # --------------------------------------------------------------
         # console logging
         # --------------------------------------------------------------
-        print(f"---- response.text: {response.text} ----")
+        response_text = json.loads(response.text)
+        print(f"---- response.text: {json.dumps(response_text, indent=4)} ----")
         # --------------------------------------------------------------
 
-        client.chat_postMessage(channel=channel_id, text=f"Retrieved:\n\n {response.text}")
+        client.chat_postMessage(channel=channel_id, text=f"Retrieved:\n\n {json.dumps(response_text, indent=4)}")
 
         # --------------------------------------------------------------
         # Need to respond back to slack api with 200 code hopefully
@@ -352,10 +354,11 @@ def slack_event():
         # --------------------------------------------------------------
         # console logging
         # --------------------------------------------------------------
-        print(f"---- response.text: {response.text} ----")
+        response_text = json.loads(response.text)
+        print(f"---- response.text: {json.dumps(response_text, indent=4)} ----")
         # --------------------------------------------------------------
 
-        client.chat_postMessage(channel=channel_id, text=f"Updated:\n\n {response.text}")
+        client.chat_postMessage(channel=channel_id, text=f"Updated:\n\n {json.dumps(response_text, indent=4)}")
 
         # --------------------------------------------------------------
         # Need to respond back to slack api with 200 code hopefully
@@ -420,10 +423,11 @@ def slack_event():
         # --------------------------------------------------------------
         # console logging
         # --------------------------------------------------------------
-        print(f"---- response.text: {response.text} ----")
+        response_text = json.loads(response.text)
+        print(f"---- response.text: {json.dumps(response_text, indent=4)} ----")
         # --------------------------------------------------------------
 
-        client.chat_postMessage(channel=channel_id, text=f"Deleted:\n\n {response.text}")
+        client.chat_postMessage(channel=channel_id, text=f"Deleted:\n\n {json.dumps(response_text, indent=4)}")
 
         # --------------------------------------------------------------
         # Need to respond back to slack api with 200 code hopefully
